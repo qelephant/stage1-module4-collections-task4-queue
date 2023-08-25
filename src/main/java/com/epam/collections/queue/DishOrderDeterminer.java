@@ -4,17 +4,23 @@ import java.util.*;
 
 public class DishOrderDeterminer {
     public List<Integer> determineDishOrder(int numberOfDishes, int everyDishNumberToEat) {
-        List<Integer> integerList = new ArrayList<>();
         Queue<Integer> queue = new LinkedList<>();
-        for (int i = 0; i < numberOfDishes; i++) {
+        for (int i = 1; i <= numberOfDishes; i++) {
             queue.add(i);
         }
-        List<Integer> tempList = new ArrayList<>(queue);
 
-        for (Integer element : tempList) {
-            if(element % everyDishNumberToEat == 0)
-            integerList.add = element;
+        List<Integer> result = new ArrayList<>();
+        int eaten = 0;
+        
+        while (!queue.isEmpty()) {
+            eaten++;
+            if (eaten % everyDishNumberToEat == 0) {
+                result.add(queue.poll());
+            } else {
+                queue.add(queue.poll());
+            }
         }
-        return integerList;
+
+        return result;
     }
 }
